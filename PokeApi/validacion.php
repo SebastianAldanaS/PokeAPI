@@ -69,6 +69,20 @@
         .form-container > div:first-child {
             margin-right: 20px;
         }
+
+        .message {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .error-message {
+            color: red;
+        }
+
+        .success-message {
+            color: green;
+        }
     </style>
 </head>
 <body>
@@ -83,6 +97,9 @@
                 <input type="password" id="login_password" name="login_password" required><br><br>
                 <input type="submit" value="Iniciar sesión">
             </form>
+            <?php if (isset($_GET['login_error'])): ?>
+                <p class="message error-message"><?php echo $_GET['login_error']; ?></p>
+            <?php endif; ?>
         </div>
         <div>
             <h2>Registrarse</h2>
@@ -93,6 +110,12 @@
                 <input type="password" id="register_password" name="register_password" required><br><br>
                 <input type="submit" value="Registrarse">
             </form>
+            <?php if (isset($_GET['register_message'])): ?>
+                <p class="message success-message"><?php echo $_GET['register_message']; ?></p>
+            <?php endif; ?>
+            <?php if (isset($_GET['register_error'])): ?>
+                <p class="message error-message"><?php echo $_GET['register_error']; ?></p>
+            <?php endif; ?>
         </div>
     </div>
 </body>

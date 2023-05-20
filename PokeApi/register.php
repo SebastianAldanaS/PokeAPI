@@ -15,7 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($result['count'] > 0) {
         // El nombre de usuario ya existe
-        echo "El nombre de usuario ya está en uso";
+        $register_error = "El nombre de usuario ya está en uso";
+        header("Location: validacion.php?register_error=" . urlencode($register_error));
+        exit;
     } else {
         // Insertar los datos en la tabla 'entrenadores'
         $hashed_password = password_hash($register_password, PASSWORD_DEFAULT);
@@ -27,10 +29,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($statement->execute()) {
             // Registro exitoso
-            echo "Registro exitoso";
+            $register_message = "Registro exitoso";
+            header("Location: validacion.php?register_message=" . urlencode($register_message));
+            exit;
         } else {
             // Error al registrar
-            echo "Error al registrar";
+            $register_error = "Error al registrar";
+            header("Location: validacion.php?register_error=" . urlencode($register_error));
+            exit;
         }
     }
 }

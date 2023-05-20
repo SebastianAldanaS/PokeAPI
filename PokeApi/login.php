@@ -27,11 +27,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         } else {
             // Credenciales inválidas
-            echo "Credenciales inválidas. Contraseña incorrecta.";
+            $login_error = "Credenciales inválidas. Contraseña incorrecta.";
+            header("Location: validacion.php?login_error=" . urlencode($login_error));
+            exit;
         }
     } else {
         // Credenciales inválidas
-        echo "Credenciales inválidas. Usuario no encontrado.";
+        $login_error = "Credenciales inválidas. Usuario no encontrado.";
+        header("Location: validacion.php?login_error=" . urlencode($login_error));
+        exit;
     }
 }
 ?>
